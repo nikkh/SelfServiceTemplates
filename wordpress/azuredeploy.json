@@ -62,9 +62,8 @@
     "publicIPAddressName": "publicIP",
     "publicIPAddressType": "Dynamic",
     "vmName": "[parameters('vmDnsName')]",
-    "virtualNetworkResourceGroup": "HEASGUKSDEVNET01",
     "virtualNetworkName": "HEASGUKSDEVVNET01",
-    "subnetRef": "[resourceId(variables('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
+    "subnetRef": "[resourceId('HEASGUKSDEVNET01', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "linuxConfiguration": {
       "disablePasswordAuthentication": true,
       "ssh": {
