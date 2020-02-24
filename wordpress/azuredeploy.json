@@ -53,13 +53,11 @@
   },
   "variables": {
     "nicName": "VMNic",
-    "addressPrefix": "10.121.0.0/16",
     "imagePublisher": "Canonical",
     "imageVersion": "latest",
     "imageSKU": "14.04.5-LTS",
     "imageOffer": "UbuntuServer",
     "subnetName": "test",
-    "subnetPrefix": "10.121.0.0/24",
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "publicIP",
     "publicIPAddressType": "Dynamic",
@@ -129,33 +127,7 @@
         ]
       }
     },
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[variables('virtualNetworkName')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
-      ],
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[variables('addressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[variables('subnetName')]",
-            "properties": {
-              "addressPrefix": "[variables('subnetPrefix')]",
-              "networkSecurityGroup": {
-                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
-              }
-            }
-          }
-        ]
-      }
-    },
+  
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
@@ -163,7 +135,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+       
       ],
       "properties": {
         "ipConfigurations": [
